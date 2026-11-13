@@ -1,0 +1,16 @@
+[
+ {
+  "date": "2026-11-13",
+  "holders": 1372,
+  "floor": 0.1947648,
+  "clusters": 48,
+  "clustered_share": 0.1274,
+  "exactly3_in_clusters": 6,
+  "top5_supply_share": 0.0876,
+  "top5_volume_share_90d": 0.4125,
+  "airdrop_dumpers": 2,
+  "sales_30d": 154,
+  "unique_buyers_30d": 70,
+  "volume_30d": 33.01
+ }
+]
