@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sproto Gremlins Watch</title>
+<meta name="description" content="Daily holder, cluster and trading analysis of the Sproto Gremlins NFT collection.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+:root {
+  color-scheme: light;
+  --bg: #f4f4f2; --surface: #fcfcfb; --border: #e3e2de; --grid: #ecebe7;
+  --text: #0b0b0b; --text-2: #52514e; --muted: #7a7974;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a;
+  --flag: #b4232c; --flag-bg: #fbe9e9; --chip: #ecebe7; --link: #1c5cab;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #111110; --surface: #1a1a19; --border: #2e2e2c; --grid: #262624;
+    --text: #f0efec; --text-2: #c3c2b7; --muted: #8f8e88;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70;
+    --flag: #f08080; --flag-bg: #3a1c1c; --chip: #2a2a28; --link: #86b6ef;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #111110; --surface: #1a1a19; --border: #2e2e2c; --grid: #262624;
+  --text: #f0efec; --text-2: #c3c2b7; --muted: #8f8e88;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70;
+  --flag: #f08080; --flag-bg: #3a1c1c; --chip: #2a2a28; --link: #86b6ef;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text);
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 1180px; margin: 0 auto; padding: 20px 16px 60px; }
+header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 8px; }
+h1 { font-size: 22px; margin: 0; }
+h2 { font-size: 17px; margin: 0 0 4px; }
+.sub { color: var(--text-2); font-size: 13px; }
+a { color: var(--link); text-decoration: none; }
+a:hover { text-decoration: underline; }
+section { background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  padding: 16px; margin-top: 16px; min-width: 0; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-top: 16px; }
+.tile { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+.tile .v { font-size: 24px; font-weight: 650; font-variant-numeric: tabular-nums; }
+.tile .l { color: var(--text-2); font-size: 12.5px; }
+.tile .d { color: var(--muted); font-size: 12px; margin-top: 2px; }
+.tile.warn .v { color: var(--flag); }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 16px; }
+.grid2 > section { margin-top: 0; }
+.charts { margin-top: 16px; }
+.chart { position: relative; height: 240px; margin-top: 8px; }
+.legend { display: flex; gap: 14px; font-size: 12.5px; color: var(--text-2); margin-top: 6px; flex-wrap: wrap; }
+.legend i { display: inline-block; width: 12px; height: 3px; border-radius: 2px; vertical-align: middle; margin-right: 5px; }
+.legend i.box { height: 10px; width: 10px; }
+.tw { overflow-x: auto; margin-top: 10px; -webkit-overflow-scrolling: touch; }
+table { border-collapse: collapse; width: 100%; font-size: 13px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 7px 8px; border-bottom: 1px solid var(--border); white-space: nowrap; }
+th { color: var(--text-2); font-weight: 600; font-size: 12px; position: sticky; top: 0; background: var(--surface); }
+th.sort { cursor: pointer; user-select: none; }
+th.sort:hover { color: var(--text); }
+th .ar { color: var(--muted); font-size: 10px; margin-left: 3px; }
+td.n, th.n { text-align: right; }
+tr.flagged td:first-child { box-shadow: inset 3px 0 0 var(--flag); }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12.5px; }
+.chip { display: inline-block; padding: 1px 7px; border-radius: 99px; background: var(--chip);
+  font-size: 11.5px; margin-right: 3px; color: var(--text-2); }
+.chip.f { background: var(--flag-bg); color: var(--flag); }
+.controls { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 10px; }
+input, select, button { font: inherit; font-size: 14px; color: var(--text); background: var(--bg);
+  border: 1px solid var(--border); border-radius: 8px; padding: 7px 10px; }
+input { flex: 1 1 220px; min-width: 0; }
+button { cursor: pointer; }
+.more { margin-top: 10px; }
+details { border-bottom: 1px solid var(--border); padding: 8px 0; }
+details summary { cursor: pointer; display: flex; gap: 10px; flex-wrap: wrap; align-items: baseline; }
+details summary::-webkit-details-marker { display: none; }
+.note { color: var(--muted); font-size: 12.5px; margin-top: 8px; }
+.bar { height: 6px; border-radius: 3px; background: var(--s1); }
+.share { display: grid; grid-template-columns: minmax(0, 1fr) 70px; gap: 4px 10px; align-items: center; margin-top: 10px; font-size: 13px; }
+.share .lbl { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.share .pct { text-align: right; font-variant-numeric: tabular-nums; }
+.share .track { grid-column: 1 / -1; background: var(--grid); border-radius: 3px; margin-bottom: 4px; }
+#err { color: var(--flag); }
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Sproto Gremlins Watch</h1>
+      <div class="sub">Holder, cluster &amp; trading analysis · <a id="contract" href="https://etherscan.io/address/0xeeca64ea9fcf99a22806cd99b3d29cf6e8d54925" target="_blank" rel="noopener">0xeeca…4925</a></div>
+    </div>
+    <div class="sub" id="updated">Loading…</div>
+  </header>
+  <div id="err"></div>
+
+  <div class="tiles" id="tiles"></div>
+
+  <div class="grid2 charts">
+    <section>
+      <h2>Weekly sales vs unique buyers</h2>
+      <div class="sub">A wide gap means a few wallets are doing most of the buying</div>
+      <div class="legend"><span><i class="box" style="background:var(--s1)"></i>Sales</span><span><i class="box" style="background:var(--s2)"></i>Unique buyers</span></div>
+      <div class="chart"><canvas id="cWeekly" aria-label="Weekly sales and unique buyers"></canvas></div>
+    </section>
+    <section>
+      <h2>Weekly volume (ETH)</h2>
+      <div class="sub">ETH, WETH and Blur ETH sales</div>
+      <div class="chart"><canvas id="cVolume" aria-label="Weekly volume in ETH"></canvas></div>
+    </section>
+    <section>
+      <h2>Holder count</h2>
+      <div class="sub">Rebuilt from every on-chain transfer since mint</div>
+      <div class="chart"><canvas id="cHolders" aria-label="Holder count over time"></canvas></div>
+    </section>
+    <section>
+      <h2>Concentration over time</h2>
+      <div class="sub">Daily snapshots, so this builds up as the job runs</div>
+      <div class="legend"><span><i style="background:var(--s1)"></i>Top-5 supply share</span><span><i style="background:var(--s2)"></i>Clustered supply share</span><span><i style="background:var(--s3)"></i>Top-5 volume share (90d)</span></div>
+      <div class="chart"><canvas id="cConc" aria-label="Concentration metrics over time"></canvas></div>
+    </section>
+  </div>
+
+  <div class="grid2" style="margin-top:16px">
+    <section>
+      <h2>Top 5 by supply held</h2>
+      <div class="sub">Clusters count as one entity</div>
+      <div id="topSupply"></div>
+    </section>
+    <section>
+      <h2>Top 5 by volume (90d)</h2>
+      <div class="sub">Share of ETH volume each entity was on either side of</div>
+      <div id="topVol"></div>
+    </section>
+  </div>
+
+  <section id="walletsSec">
+    <h2>Holders</h2>
+    <div class="sub">Tap a column to sort. Rows with a red edge carry a flag.</div>
+    <div class="controls">
+      <input id="q" type="search" placeholder="Search address, funder or cluster (e.g. C3)">
+      <select id="flagSel"><option value="">All holders</option></select>
+    </div>
+    <div class="tw"><table id="wt"></table></div>
+    <button class="more" id="moreBtn">Show more</button>
+    <div class="note" id="wNote"></div>
+  </section>
+
+  <section>
+    <h2>Funding clusters</h2>
+    <div class="sub">Holders whose first ETH came from the same address, or from another holder. Exchange and service funders are left out.</div>
+    <div id="clusters"></div>
+    <button class="more" id="moreClusters">Show more</button>
+  </section>
+
+  <section>
+    <h2>Airdropped launchpad tokens</h2>
+    <div class="sub">New token contracts sent to several holders without the holder starting the transaction</div>
+    <div class="tw"><table id="at"></table></div>
+    <div class="note" id="aNote"></div>
+  </section>
+
+  <section>
+    <h2>Flagged sales</h2>
+    <div class="sub">Resold within 7 days, round trips, and sales inside one cluster</div>
+    <div class="tw"><table id="ft"></table></div>
+    <button class="more" id="moreFlags">Show more</button>
+  </section>
+
+  <section>
+    <h2>Back-and-forth wallet pairs</h2>
+    <div class="sub">Pairs that sold to each other in both directions within 30 days</div>
+    <div class="tw"><table id="pt"></table></div>
+  </section>
+
+  <section>
+    <h2>Method &amp; caveats</h2>
+    <div class="sub" id="method"></div>
+  </section>
+</main>
+
+<script>
+(() => {
+  const $ = (id) => document.getElementById(id);
+  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  const short = (a) => a ? a.slice(0, 6) + "…" + a.slice(-4) : "—";
+  const fmt = (n, d = 0) => n == null ? "—" : Number(n).toLocaleString(undefined, { maximumFractionDigits: d, minimumFractionDigits: d });
+  const pct = (x, d = 1) => x == null ? "—" : (x * 100).toFixed(d) + "%";
+  const date = (ts) => new Date(ts * 1000).toISOString().slice(0, 10);
+  const FLAG_LABEL = {
+    "3-in-cluster": "holds exactly 3, in cluster", "flip7d": "resold within 7d", "roundtrip": "round trip",
+    "pair-wash": "back-and-forth pair", "intra-cluster": "intra-cluster sale", "airdrop-dumper": "airdrop dumper",
+    "contract": "contract wallet",
+  };
+  const SUSPICIOUS = new Set(["3-in-cluster", "roundtrip", "pair-wash", "intra-cluster", "airdrop-dumper"]);
+
+  function el(tag, props = {}, ...kids) {
+    const e = document.createElement(tag);
+    for (const [k, v] of Object.entries(props)) {
+      if (k === "class") e.className = v;
+      else if (k === "text") e.textContent = v;
+      else if (k === "style") e.setAttribute("style", v);
+      else e.setAttribute(k, v);
+    }
+    for (const k of kids) if (k != null) e.append(k);
+    return e;
+  }
+  const addrLink = (a, label) => a ? el("a", { href: "https://etherscan.io/address/" + a, target: "_blank", rel: "noopener", class: "mono", text: label || short(a) }) : el("span", { text: "—" });
+  const txLink = (h, label) => el("a", { href: "https://etherscan.io/tx/" + h, target: "_blank", rel: "noopener", class: "mono", text: label || short(h) });
+  const entLink = (e) => e.startsWith("C") ? el("a", { href: "#", class: "mono", text: "Cluster " + e, "data-cluster": e }) : addrLink(e);
+  const chip = (f) => el("span", { class: "chip" + (SUSPICIOUS.has(f) ? " f" : ""), text: FLAG_LABEL[f] || f });
+
+  function sortableTable(table, cols, rows, opts = {}) {
+    let key = opts.sort || null, dir = opts.dir || -1, limit = opts.limit || 100;
+    const render = () => {
+      const data = key ? [...rows].sort((a, b) => {
+        const x = cols.find(c => c.k === key).v(a), y = cols.find(c => c.k === key).v(b);
+        if (x == null) return 1; if (y == null) return -1;
+        return (x < y ? -1 : x > y ? 1 : 0) * dir;
+      }) : rows;
+      const thead = el("thead", {}, el("tr", {}, ...cols.map(c => {
+        const th = el("th", { class: (c.num ? "n " : "") + (c.v ? "sort" : ""), text: c.h });
+        if (c.v) {
+          th.tabIndex = 0;
+          if (key === c.k) th.append(el("span", { class: "ar", text: dir < 0 ? "▼" : "▲" }));
+          const go = () => { if (key === c.k) dir = -dir; else { key = c.k; dir = c.num ? -1 : 1; } render(); };
+          th.onclick = go; th.onkeydown = (e) => { if (e.key === "Enter") go(); };
+        }
+        return th;
+      })));
+      const tbody = el("tbody");
+      for (const r of data.slice(0, limit)) {
+        const tr = el("tr", opts.rowClass ? { class: opts.rowClass(r) } : {});
+        for (const c of cols) {
+          const td = el("td", { class: c.num ? "n" : "" });
+          const out = c.r ? c.r(r) : c.v(r);
+          td.append(out instanceof Node ? out : document.createTextNode(out == null ? "—" : String(out)));
+          tr.append(td);
+        }
+        tbody.append(tr);
+      }
+      table.replaceChildren(thead, tbody);
+      if (opts.more) { opts.more.style.display = data.length > limit ? "" : "none"; opts.more.textContent = `Show more (${data.length - limit} hidden)`; }
+      if (opts.onRender) opts.onRender(data.length);
+    };
+    if (opts.more) opts.more.onclick = () => { limit += 200; render(); };
+    render();
+    return { set(r) { rows = r; limit = opts.limit || 100; render(); } };
+  }
+
+  function charts(d) {
+    const grid = css("--grid"), muted = css("--muted"), s1 = css("--s1"), s2 = css("--s2"), s3 = css("--s3"), surf = css("--surface"), text = css("--text");
+    Chart.defaults.font.family = getComputedStyle(document.body).fontFamily;
+    Chart.defaults.color = muted;
+    const base = (yfmt) => ({
+      responsive: true, maintainAspectRatio: false, animation: false,
+      interaction: { mode: "index", intersect: false },
+      plugins: { legend: { display: false }, tooltip: { backgroundColor: surf, titleColor: text, bodyColor: text, borderColor: css("--border"), borderWidth: 1, padding: 10, boxWidth: 12, boxHeight: 2, usePointStyle: false,
+        callbacks: yfmt ? { label: (c) => ` ${c.dataset.label}: ${yfmt(c.parsed.y)}` } : {} } },
+      scales: { x: { grid: { display: false }, ticks: { maxRotation: 0, autoSkipPadding: 14 } },
+                y: { grid: { color: grid }, border: { display: false }, beginAtZero: true, ticks: yfmt ? { callback: yfmt } : {} } },
+    });
+    const bar = (label, data, color) => ({ label, data, backgroundColor: color, borderRadius: { topLeft: 4, topRight: 4 }, borderSkipped: "bottom", borderColor: surf, borderWidth: { left: 1, right: 1 }, maxBarThickness: 18 });
+    const line = (label, data, color) => ({ label, data, borderColor: color, backgroundColor: color, borderWidth: 2, pointRadius: data.length < 40 ? 3 : 0, pointHoverRadius: 5, tension: 0.2, spanGaps: true });
+    const w = d.weekly;
+    new Chart($("cWeekly"), { type: "bar", data: { labels: w.map(x => x.week.slice(5)), datasets: [bar("Sales", w.map(x => x.sales), s1), bar("Unique buyers", w.map(x => x.unique_buyers), s2)] }, options: base() });
+    new Chart($("cVolume"), { type: "bar", data: { labels: w.map(x => x.week.slice(5)), datasets: [bar("Volume", w.map(x => x.volume), s1)] }, options: base(v => fmt(v, 1)) });
+    const hs = d.holders_series;
+    new Chart($("cHolders"), { type: "line", data: { labels: hs.map(x => x[0]), datasets: [line("Holders", hs.map(x => x[1]), s1)] }, options: base(v => fmt(v)) });
+    const h = d.history;
+    new Chart($("cConc"), { type: "line", data: { labels: h.map(x => x.date.slice(5)), datasets: [
+      line("Top-5 supply", h.map(x => x.top5_supply_share), s1),
+      line("Clustered supply", h.map(x => x.clustered_share), s2),
+      line("Top-5 volume (90d)", h.map(x => x.top5_volume_share_90d), s3)] }, options: base(v => pct(v, 0)) });
+  }
+
+  function tiles(s) {
+    const T = [
+      ["Holders", fmt(s.holders), `${fmt(s.supply_held)} Sprotos held`],
+      ["Floor", s.floor != null ? fmt(s.floor, 3) + " " + s.floor_symbol : "—", "from OpenSea"],
+      ["Sales (30d)", fmt(s.sales_30d), `${fmt(s.volume_30d, 2)} ETH volume`],
+      ["Unique buyers (30d)", fmt(s.unique_buyers_30d), `${s.sales_30d ? (s.sales_30d / s.unique_buyers_30d).toFixed(1) : "—"} sales per buyer`],
+      ["Top-5 supply share", pct(s.top5_supply_share), "wallets or clusters"],
+      ["Top-5 volume share", pct(s.top5_volume_share_90d), "last 90 days"],
+      ["Funding clusters", fmt(s.clusters), `${fmt(s.clustered_wallets)} wallets · ${pct(s.clustered_share)} of supply`, s.clustered_share > 0.15],
+      ["Exactly 3, in clusters", fmt(s.exactly3_in_clusters), `of ${fmt(s.exactly3_total)} wallets holding exactly 3`, s.exactly3_in_clusters > 5],
+      ["Resold within 7d", fmt(s.flips_7d), `of ${fmt(s.sales_90d)} sales on record`],
+      ["Round trips / pairs", `${fmt(s.roundtrips)} / ${fmt(s.wash_pairs)}`, `${fmt(s.intra_cluster_sales)} intra-cluster sales`, (s.roundtrips + s.wash_pairs + s.intra_cluster_sales) > 5],
+      ["Airdrop dumpers", fmt(s.airdrop_dumpers), `of ${fmt(s.airdrop_recipients)} recipients · ${fmt(s.airdrop_tokens)} tokens`],
+    ];
+    $("tiles").replaceChildren(...T.map(([l, v, dd, warn]) => el("div", { class: "tile" + (warn ? " warn" : "") }, el("div", { class: "l", text: l }), el("div", { class: "v", text: v }), el("div", { class: "d", text: dd }))));
+  }
+
+  function shares(box, rows, valFn) {
+    const mx = Math.max(...rows.map(r => r.share), 1e-9);
+    box.replaceChildren(...rows.flatMap(r => {
+      const lbl = el("div", { class: "lbl" }, entLink(r.entity), el("span", { class: "sub", text: "  " + valFn(r) }));
+      return [lbl, el("div", { class: "pct", text: pct(r.share) }), el("div", { class: "track" }, el("div", { class: "bar", style: `width:${Math.max(r.share / mx * 100, 1)}%` }))];
+    }));
+    box.className = "share";
+  }
+
+  function init(d) {
+    const s = d.summary;
+    $("updated").textContent = "Updated " + new Date(s.updated * 1000).toLocaleString();
+    tiles(s);
+    charts(d);
+    shares($("topSupply"), d.top_supply, r => fmt(r.sprotos) + " Sprotos");
+    shares($("topVol"), d.top_volume_90d, r => fmt(r.volume, 2) + " ETH");
+
+    // wallets
+    const flags = new Set(d.wallets.flatMap(w => w.flags));
+    for (const f of Object.keys(FLAG_LABEL)) if (flags.has(f)) $("flagSel").append(el("option", { value: f, text: "Flag: " + FLAG_LABEL[f] }));
+    $("flagSel").append(el("option", { value: "_any", text: "Any warning flag" }), el("option", { value: "_cluster", text: "In a cluster" }));
+    const wcols = [
+      { k: "a", h: "Wallet", v: r => r.address, r: r => addrLink(r.address) },
+      { k: "held", h: "Held", num: 1, v: r => r.held },
+      { k: "cl", h: "Cluster", v: r => r.cluster ? +r.cluster.slice(1) : null, r: r => r.cluster ? el("a", { href: "#", "data-cluster": r.cluster, text: `${r.cluster} (${r.cluster_size})` }) : "—" },
+      { k: "age", h: "Age (d)", num: 1, v: r => r.age_days },
+      { k: "f", h: "First funder", v: r => r.funder, r: r => r.funder ? el("span", {}, addrLink(r.funder), r.funder_service ? el("span", { class: "chip", text: "exchange/service" }) : null) : "—" },
+      { k: "b", h: "Buys 90d", num: 1, v: r => r.buys90 },
+      { k: "s", h: "Sells 90d", num: 1, v: r => r.sells90 },
+      { k: "vol", h: "Vol 90d", num: 1, v: r => r.vol90, r: r => r.vol90 ? fmt(r.vol90, 2) : "—" },
+      { k: "ds", h: "Airdrop dumped", num: 1, v: r => r.dump_share, r: r => r.dump_share == null ? "—" : pct(r.dump_share, 0) },
+      { k: "fl", h: "Flags", v: r => r.flags.filter(f => SUSPICIOUS.has(f)).length * 10 + r.flags.length, r: r => el("span", {}, ...r.flags.map(chip)) },
+    ];
+    const wt = sortableTable($("wt"), wcols, d.wallets, { more: $("moreBtn"), sort: "held", rowClass: r => r.flags.some(f => SUSPICIOUS.has(f)) ? "flagged" : "",
+      onRender: n => $("wNote").textContent = `${fmt(n)} wallets match` });
+    const filter = () => {
+      const q = $("q").value.trim().toLowerCase(), f = $("flagSel").value;
+      wt.set(d.wallets.filter(w =>
+        (!q || w.address.includes(q) || (w.funder || "").includes(q) || (w.cluster || "").toLowerCase() === q) &&
+        (!f || (f === "_any" ? w.flags.some(x => SUSPICIOUS.has(x)) : f === "_cluster" ? !!w.cluster : w.flags.includes(f)))));
+    };
+    $("q").oninput = filter; $("flagSel").onchange = filter;
+    document.addEventListener("click", (e) => {
+      const c = e.target.closest("[data-cluster]");
+      if (!c) return;
+      e.preventDefault();
+      $("q").value = c.dataset.cluster.toLowerCase(); $("flagSel").value = ""; filter();
+      $("walletsSec").scrollIntoView({ behavior: "smooth" });
+    });
+
+    // clusters
+    let climit = 15;
+    const byAddr = Object.fromEntries(d.wallets.map(w => [w.address, w]));
+    const renderClusters = () => {
+      $("clusters").replaceChildren(...d.clusters.slice(0, climit).map(c => {
+        const det = el("details", {}, el("summary", {},
+          el("strong", { text: "Cluster " + c.id }),
+          el("span", { text: `${c.size} wallets` }),
+          el("span", { text: `${fmt(c.sprotos)} Sprotos` }),
+          c.exactly3 ? el("span", { class: "chip f", text: `${c.exactly3} hold exactly 3` }) : null,
+          el("span", { class: "sub" }, document.createTextNode("funded by "), ...c.funders.map(f => addrLink(f)))));
+        const tbl = el("table", {}, el("tbody", {}, ...c.members.map(a => {
+          const w = byAddr[a] || {};
+          return el("tr", {}, el("td", {}, addrLink(a)), el("td", { class: "n", text: fmt(w.held) }), el("td", { class: "n", text: w.age_days != null ? w.age_days + "d old" : "—" }), el("td", {}, el("span", {}, ...(w.flags || []).map(chip))));
+        })));
+        det.append(el("div", { class: "tw" }, tbl));
+        return det;
+      }));
+      $("moreClusters").style.display = d.clusters.length > climit ? "" : "none";
+      $("moreClusters").textContent = `Show more (${d.clusters.length - climit} hidden)`;
+    };
+    $("moreClusters").onclick = () => { climit += 30; renderClusters(); };
+    if (!d.clusters.length) $("clusters").append(el("div", { class: "note", text: "No clusters found." }));
+    renderClusters();
+
+    // airdrops
+    sortableTable($("at"), [
+      { k: "t", h: "Token", v: r => (r.symbol || r.name || "").toLowerCase(), r: r => el("span", {}, addrLink(r.contract, r.symbol || short(r.contract)), el("span", { class: "sub", text: " " + (r.name || "") })) },
+      { k: "k", h: "Type", v: r => r.kind },
+      { k: "c", h: "Created", v: r => r.created_ts, r: r => date(r.created_ts) },
+      { k: "rc", h: "Holders reached", num: 1, v: r => r.recipients },
+      { k: "sa", h: "Sold any", num: 1, v: r => r.sold_any / r.recipients, r: r => `${r.sold_any} (${pct(r.sold_any / r.recipients, 0)})` },
+      { k: "d", h: "Dumped >50% in 24h", num: 1, v: r => r.dumped_24h / r.recipients, r: r => `${r.dumped_24h} (${pct(r.dumped_24h / r.recipients, 0)})` },
+      { k: "m", h: "Median hrs to first sale", num: 1, v: r => r.median_hours_to_sell, r: r => r.median_hours_to_sell == null ? "—" : fmt(r.median_hours_to_sell, 1) },
+    ], d.airdrop_tokens, { sort: "rc", limit: 100 });
+    $("aNote").textContent = d.airdrop_tokens.length ? "" : "No qualifying airdrops found yet.";
+
+    // flagged sales
+    sortableTable($("ft"), [
+      { k: "ts", h: "Date", v: r => r.ts, r: r => txLink(r.tx, date(r.ts)) },
+      { k: "tok", h: "Token", num: 1, v: r => +r.token, r: r => el("a", { href: `https://opensea.io/assets/ethereum/0xeeca64ea9fcf99a22806cd99b3d29cf6e8d54925/${r.token}`, target: "_blank", rel: "noopener", text: "#" + r.token }) },
+      { k: "p", h: "Price", num: 1, v: r => r.price_eth, r: r => fmt(r.price_eth, 3) },
+      { k: "s", h: "Seller", v: r => r.seller, r: r => addrLink(r.seller) },
+      { k: "b", h: "Buyer", v: r => r.buyer, r: r => addrLink(r.buyer) },
+      { k: "m", h: "Market", v: r => r.market, r: r => (r.market || "").startsWith("other:") ? "Other" : r.market },
+      { k: "f", h: "Flags", v: r => r.flags.join(), r: r => el("span", {}, ...r.flags.map(chip)) },
+    ], d.flagged_sales, { sort: "ts", limit: 50, more: $("moreFlags") });
+
+    sortableTable($("pt"), [
+      { k: "a", h: "Wallet A", v: r => r.a, r: r => addrLink(r.a) },
+      { k: "b", h: "Wallet B", v: r => r.b, r: r => addrLink(r.b) },
+      { k: "ab", h: "A → B sales", num: 1, v: r => r.a_to_b },
+      { k: "ba", h: "B → A sales", num: 1, v: r => r.b_to_a },
+    ], d.wash_pairs, { limit: 100 });
+
+    const p = d.params;
+    $("method").replaceChildren(...[
+      "Holders: every Sproto ERC-721 transfer since mint, replayed from Etherscan, so ownership is exact.",
+      "Sales: OpenSea's events API (it includes Blur and other Seaport/aggregator fills). Started 90 days back and adds new sales each day. Only ETH, WETH and Blur ETH prices count toward volume.",
+      `Funding source: the first incoming ETH transfer or internal transfer the wallet received. For an internal transfer it's whoever started the transaction. Funders with ${fmt(p.service_nonce)}+ outgoing transactions are treated as exchanges or services and never form clusters. Contract wallets are left out of clustering.`,
+      "Clusters: holders that share a first funder, or that were funded by another holder. A shared funder isn't proof of one owner (an OTC desk or a friend can fund many wallets), so read clusters as leads to check, not conclusions.",
+      `Resold within 7d: the wallet sold a token within ${p.flip_days} days of buying it. Round trip: a token went back to a wallet that sold it within ${p.roundtrip_days} days. Back-and-forth pair: two wallets sold to each other in both directions within ${p.roundtrip_days} days.`,
+      `Airdrops: an ERC-20/721/1155 token counts if it reached at least ${p.airdrop_min_holders} holders, the holder didn't start the transaction, and its contract was created at most ${p.new_token_days} days before its first drop. Spam-style names (URLs, "claim", and so on) are dropped. "Sold" means the wallet sent the token out. "Dumped" is the wallet's average share of each airdrop sent out within 24 hours, and a dumper is a wallet above 50%. Token scans begin 90 days before tracking started.`,
+    ].map(t => el("p", { text: t, style: "margin:6px 0" })));
+  }
+
+  fetch("data.json", { cache: "no-cache" }).then(r => r.json()).then(init).catch(e => { $("err").textContent = "Failed to load data: " + e; });
+})();
+</script>
+</body>
+</html>
