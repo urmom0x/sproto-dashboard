@@ -3,28 +3,28 @@
 {
 "interval": "one_day",
 "sales": 8,
-"volume": 1.320401430473257,
+"volume": 1.306,
 "volume_symbol": "ETH"
 },
 {
 "interval": "seven_day",
-"sales": 34,
-"volume": 6.546762136256534,
+"sales": 32,
+"volume": 6.144855458686869,
 "volume_symbol": "ETH"
 },
 {
 "interval": "thirty_day",
-"sales": 138,
-"volume": 29.886834193436542,
+"sales": 139,
+"volume": 29.989478637069432,
 "volume_symbol": "ETH"
 }
 ],
 "total": {
-"floor_price": 0.1947648,
+"floor_price": 0.16663491,
 "floor_price_symbol": "ETH",
-"num_owners": 1373,
-"sales": 22061,
-"volume": 12742.308428930894,
+"num_owners": 1375,
+"sales": 22062,
+"volume": 12719.29083440633,
 "volume_symbol": "ETH"
 }
 }
