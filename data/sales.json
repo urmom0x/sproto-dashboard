@@ -1,5 +1,5 @@
 {
-"last_ts": 1794587459,
+"last_ts": 1794706859,
 "sales": [
 {
 "buyer": "0xb5c43489a2d10f0674a6c1ad9b1e2c1886d1e78d",
@@ -4788,6 +4788,66 @@
 "token": "86",
 "ts": 1794587459,
 "tx": "0x740266b8c869e8a3685633dc525832ef003577aba9672b8ed5be7b5f5c4ffc66"
+},
+{
+"buyer": "0xb678e629425f95650269077ee5393b5ffdfd3bc5",
+"market": "OpenSea",
+"price": 0.151,
+"price_eth": 0.151,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0x80f00a95991afc0bec83ef055361c9925359d092",
+"symbol": "WETH",
+"token": "1196",
+"ts": 1794641771,
+"tx": "0xc0461805dc2c4febbe2c3ad27d8cb12ff384ba3ea103f9bca02a839249d8f296"
+},
+{
+"buyer": "0x805963efd6879d60dec77225e5d1550290807b74",
+"market": "OpenSea",
+"price": 0.14,
+"price_eth": 0.14,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0x80f00a95991afc0bec83ef055361c9925359d092",
+"symbol": "WETH",
+"token": "1198",
+"ts": 1794641771,
+"tx": "0xc0461805dc2c4febbe2c3ad27d8cb12ff384ba3ea103f9bca02a839249d8f296"
+},
+{
+"buyer": "0xbce28c649a0a8970091b4d90127fc41da58c9037",
+"market": "OpenSea",
+"price": 0.149,
+"price_eth": 0.149,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0x80f00a95991afc0bec83ef055361c9925359d092",
+"symbol": "WETH",
+"token": "85",
+"ts": 1794641771,
+"tx": "0xc0461805dc2c4febbe2c3ad27d8cb12ff384ba3ea103f9bca02a839249d8f296"
+},
+{
+"buyer": "0x7eec48d43fac9e60d49bba8756fd965aa6942997",
+"market": "OpenSea",
+"price": 0.173402662,
+"price_eth": 0.173402662,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0x7b23d5e1fcac67492114bc6b5b0a99ba0c9667c1",
+"symbol": "ETH",
+"token": "86",
+"ts": 1794663995,
+"tx": "0x478255993247cdbdcd2154edde3e5e7112736b0c4cd24ce9fd61bbf10a60c05d"
+},
+{
+"buyer": "0x99095822bf4f32a9ee73f6c9b5a44e88ad52f885",
+"market": "OpenSea",
+"price": 0.178957,
+"price_eth": 0.178957,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0x805963efd6879d60dec77225e5d1550290807b74",
+"symbol": "ETH",
+"token": "2798",
+"ts": 1794706859,
+"tx": "0x23c20bedac882d9008c56a0d84cee5894e6d00e66bcbab16fe6abfa68b20b026"
 }
 ],
 "tx_to": {

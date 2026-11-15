@@ -26,5 +26,19 @@
   "sales_30d": 152,
   "unique_buyers_30d": 69,
   "volume_30d": 32.592
+ },
+ {
+  "date": "2026-11-15",
+  "holders": 1375,
+  "floor": 0.15961805,
+  "clusters": 48,
+  "clustered_share": 0.1259,
+  "exactly3_in_clusters": 6,
+  "top5_supply_share": 0.0876,
+  "top5_volume_share_90d": 0.4187,
+  "airdrop_dumpers": 2,
+  "sales_30d": 156,
+  "unique_buyers_30d": 71,
+  "volume_30d": 33.224
  }
 ]
