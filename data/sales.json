@@ -1,5 +1,5 @@
 {
-"last_ts": 1794706859,
+"last_ts": 1794763619,
 "sales": [
 {
 "buyer": "0xb5c43489a2d10f0674a6c1ad9b1e2c1886d1e78d",
@@ -4848,6 +4848,30 @@
 "token": "2798",
 "ts": 1794706859,
 "tx": "0x23c20bedac882d9008c56a0d84cee5894e6d00e66bcbab16fe6abfa68b20b026"
+},
+{
+"buyer": "0xe4bf59720181573ba33c216541af5bc25a5eb196",
+"market": "OpenSea",
+"price": 0.2399,
+"price_eth": 0.2399,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0xbce28c649a0a8970091b4d90127fc41da58c9037",
+"symbol": "ETH",
+"token": "85",
+"ts": 1794728255,
+"tx": "0xa5395dd5e522d0c47843e8b161753d536b8bf2eafae50573bb1b89a6ff7a5a52"
+},
+{
+"buyer": "0xeed8fc83afa64db42db1c11cc3788335aefca1ed",
+"market": "OpenSea",
+"price": 0.15,
+"price_eth": 0.15,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0x2c13c6959d735c2c2bc363bebe7df4391165c830",
+"symbol": "WETH",
+"token": "2824",
+"ts": 1794763619,
+"tx": "0x809869b38a6f1e131883a2874e15e5c7caa6267c7e6042c1ad282c4f9d9f984e"
 }
 ],
 "tx_to": {
