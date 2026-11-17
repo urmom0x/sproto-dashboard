@@ -8431,6 +8431,14 @@
 "funder": "0x3706cc0eeb78d2e77f0f591935353d981f3726ff",
 "is_contract": false
 },
+"0xc1958961b8cce427c380f74169bddb3263b8d442": {
+"first_ts": null,
+"fund_eth": null,
+"fund_ts": null,
+"fund_via": null,
+"funder": null,
+"is_contract": false
+},
 "0xc19bfed23a985617510fe41f068dae1ce1866ff6": {
 "first_ts": 1672060871,
 "fund_eth": 0.2,
