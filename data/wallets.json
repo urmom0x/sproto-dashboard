@@ -4887,6 +4887,14 @@
 "funder": "0xd76e9db54e7ead825348bb4159b4c3a79b085bc9",
 "is_contract": false
 },
+"0x72182e2ba8f07404c70b0b83d64871ab743b1589": {
+"first_ts": 1792151783,
+"fund_eth": 0.025,
+"fund_ts": 1792151783,
+"fund_via": null,
+"funder": "0x55b05577303a419a163eab61069c3fd76d1c59bd",
+"is_contract": false
+},
 "0x7263a7c2cc2aec9710011c756fbc51dcfa31bb7c": {
 "first_ts": 1638789794,
 "fund_eth": 0.2,
@@ -6269,6 +6277,14 @@
 "fund_ts": null,
 "fund_via": null,
 "funder": null,
+"is_contract": false
+},
+"0x8eb499e0a465d2eb9ab5dc1242e11242b0addb86": {
+"first_ts": 1612120457,
+"fund_eth": 0.45919801840570845,
+"fund_ts": 1612120457,
+"fund_via": null,
+"funder": "0x19d384f3b389aff40cf1ec45714b068bafc2d0ea",
 "is_contract": false
 },
 "0x8f200917dde44b546c6f9044d47db833c042c0ac": {

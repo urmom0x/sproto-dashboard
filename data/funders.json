@@ -331,6 +331,10 @@
 "is_contract": false,
 "nonce": 49
 },
+"0x19d384f3b389aff40cf1ec45714b068bafc2d0ea": {
+"is_contract": false,
+"nonce": 25483
+},
 "0x19e34d09c2664d4f0829b1431ea73dac1b2bea93": {
 "is_contract": false,
 "nonce": 46151
@@ -1186,6 +1190,10 @@
 "0x555ce236c0220695b68341bc48c68d52210cc35b": {
 "is_contract": true,
 "nonce": 1058764
+},
+"0x55b05577303a419a163eab61069c3fd76d1c59bd": {
+"is_contract": false,
+"nonce": 2654
 },
 "0x55dcad916750c19c4ec69d65ff0317767b36ce90": {
 "is_contract": false,
