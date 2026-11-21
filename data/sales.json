@@ -1,5 +1,5 @@
 {
-"last_ts": 1795010783,
+"last_ts": 1795219355,
 "sales": [
 {
 "buyer": "0xb5c43489a2d10f0674a6c1ad9b1e2c1886d1e78d",
@@ -5004,6 +5004,138 @@
 "token": "1198",
 "ts": 1795010783,
 "tx": "0xe19bb10d19a7f4dc9f788162b1101df70e767f23224d2453fa9d97b1cad65bb4"
+},
+{
+"buyer": "0xd246c4a039508379cd70ce624cdb7c8b1c991f37",
+"market": "OpenSea",
+"price": 0.18653219999999,
+"price_eth": 0.18653219999999,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0x4b6ca6713db92add6affef9da1b52933cd3f0913",
+"symbol": "ETH",
+"token": "3230",
+"ts": 1795077767,
+"tx": "0x8866c69b5b1add97e17a0b61c8f927cdb0d2a26c013569e86215f0263d30c585"
+},
+{
+"buyer": "0x7485b00fa7d5feaf2c95358db8bf6f21af5ff40b",
+"market": "OpenSea",
+"price": 0.178,
+"price_eth": 0.178,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0x72182e2ba8f07404c70b0b83d64871ab743b1589",
+"symbol": "WETH",
+"token": "1834",
+"ts": 1795124843,
+"tx": "0xf6647cf792ee16e4a317bb114ba4ed2e05dc63fcf4a3c5b680e65b78653a8c1d"
+},
+{
+"buyer": "0xabbcc02888e17e7940d5efa21d3e6ef14af7ee21",
+"market": "OpenSea",
+"price": 0.158,
+"price_eth": 0.158,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0xbf24b40ed9568c92b9f684fbc3928ab9fd8ad8a9",
+"symbol": "WETH",
+"token": "895",
+"ts": 1795157255,
+"tx": "0x0031559a8d17ffe0c03c9874929740489dfa90c6b0a71cd0f10b7ce8e517559b"
+},
+{
+"buyer": "0x7b23d5e1fcac67492114bc6b5b0a99ba0c9667c1",
+"market": "OpenSea",
+"price": 0.163,
+"price_eth": 0.163,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0xbf24b40ed9568c92b9f684fbc3928ab9fd8ad8a9",
+"symbol": "WETH",
+"token": "2298",
+"ts": 1795157255,
+"tx": "0x0031559a8d17ffe0c03c9874929740489dfa90c6b0a71cd0f10b7ce8e517559b"
+},
+{
+"buyer": "0x54c6d73baf9dd8612978b694b23a309263b54cfa",
+"market": "OpenSea",
+"price": 0.162,
+"price_eth": 0.162,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0xbf24b40ed9568c92b9f684fbc3928ab9fd8ad8a9",
+"symbol": "WETH",
+"token": "3072",
+"ts": 1795157255,
+"tx": "0x0031559a8d17ffe0c03c9874929740489dfa90c6b0a71cd0f10b7ce8e517559b"
+},
+{
+"buyer": "0x805963efd6879d60dec77225e5d1550290807b74",
+"market": "OpenSea",
+"price": 0.164,
+"price_eth": 0.164,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0xbf24b40ed9568c92b9f684fbc3928ab9fd8ad8a9",
+"symbol": "WETH",
+"token": "8",
+"ts": 1795157255,
+"tx": "0x0031559a8d17ffe0c03c9874929740489dfa90c6b0a71cd0f10b7ce8e517559b"
+},
+{
+"buyer": "0x72182e2ba8f07404c70b0b83d64871ab743b1589",
+"market": "OpenSea",
+"price": 0.143,
+"price_eth": 0.143,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0xbf24b40ed9568c92b9f684fbc3928ab9fd8ad8a9",
+"symbol": "WETH",
+"token": "3318",
+"ts": 1795157255,
+"tx": "0x0031559a8d17ffe0c03c9874929740489dfa90c6b0a71cd0f10b7ce8e517559b"
+},
+{
+"buyer": "0x6a4b99bc6f0be3927d1de36952f57fe98b8fcde6",
+"market": "OpenSea",
+"price": 0.155,
+"price_eth": 0.155,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0x72182e2ba8f07404c70b0b83d64871ab743b1589",
+"symbol": "WETH",
+"token": "3318",
+"ts": 1795183343,
+"tx": "0x8090c52076d4eff5001de1eb95eb734ea11b666e27470044b959cdbe965c07db"
+},
+{
+"buyer": "0x7b86f201e45d6e37c5c2b9ed8db85f4e13a0013c",
+"market": "OpenSea",
+"price": 0.18845728,
+"price_eth": 0.18845728,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0xabbcc02888e17e7940d5efa21d3e6ef14af7ee21",
+"symbol": "ETH",
+"token": "895",
+"ts": 1795198811,
+"tx": "0x59f54a41001795fb09f0e12e2d07263b8860d5235ebcd7ba856ed88c9809a426"
+},
+{
+"buyer": "0xf4174ab1a9cf93217279ab0484ffc78ab7c7b83e",
+"market": "OpenSea",
+"price": 0.219999,
+"price_eth": 0.219999,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0x805963efd6879d60dec77225e5d1550290807b74",
+"symbol": "ETH",
+"token": "8",
+"ts": 1795209695,
+"tx": "0xf85845fc5ec7b74f2fb04ad0a6264189653bf782584c1a109b7acb2befa6b0e8"
+},
+{
+"buyer": "0x805963efd6879d60dec77225e5d1550290807b74",
+"market": "OpenSea",
+"price": 0.156,
+"price_eth": 0.156,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0x6a4b99bc6f0be3927d1de36952f57fe98b8fcde6",
+"symbol": "WETH",
+"token": "3318",
+"ts": 1795219355,
+"tx": "0x92673a21be97b56438f2fdcce5dc82b4a1f64830b77e3b214a128ab63ca6888c"
 }
 ],
 "tx_to": {
