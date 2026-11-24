@@ -1,5 +1,5 @@
 {
-"last_ts": 1795375175,
+"last_ts": 1795429067,
 "sales": [
 {
 "buyer": "0xb5c43489a2d10f0674a6c1ad9b1e2c1886d1e78d",
@@ -5268,6 +5268,30 @@
 "token": "581",
 "ts": 1795375175,
 "tx": "0x278f4cc7023b0efdc6012a0477cb79bc6f9138488b46cfb5414d25602b84a260"
+},
+{
+"buyer": "0x70a9fbaf5714b2b53900a50b425c71dbe36505b1",
+"market": "OpenSea",
+"price": 0.17671189,
+"price_eth": 0.17671189,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0xd875e4d4637577e5e9ab4808cb321d8e03aa5c33",
+"symbol": "ETH",
+"token": "581",
+"ts": 1795426019,
+"tx": "0x7c98b330c35683416f3a34ce8fdb5bb6307c20c69b95f6aff9e752cd5e7b6dae"
+},
+{
+"buyer": "0x70a9fbaf5714b2b53900a50b425c71dbe36505b1",
+"market": "OpenSea",
+"price": 0.219999,
+"price_eth": 0.219999,
+"protocol": "0x0000000000000068f116a894984e2db1123eb395",
+"seller": "0x805963efd6879d60dec77225e5d1550290807b74",
+"symbol": "ETH",
+"token": "1008",
+"ts": 1795429067,
+"tx": "0xad3c99aea31e1d0630d6df8181accee53c6421990b1d1aa809fa9a05a997cadf"
 }
 ],
 "tx_to": {
